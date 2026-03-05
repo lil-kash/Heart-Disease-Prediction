@@ -1,205 +1,307 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Heart Disease Predictor</title>
+    <title>CardioSense Analytics</title>
+    <!-- Modern Font -->
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <!-- Font Awesome for Icons -->
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
     <div class="background-animation">
+        <div class="mesh-bg"></div>
         <div class="circle circle-1"></div>
         <div class="circle circle-2"></div>
         <div class="circle circle-3"></div>
     </div>
 
-    <div class="container">
-        <header>
-            <div class="logo">
-                <i class="fa-solid fa-heart-pulse"></i>
-                <h1>CardioSense Air</h1>
-            </div>
-            <p>Advanced Machine Learning Heart Disease Detection</p>
-        </header>
-
-        <main>
-            <div class="form-container glass-panel">
-                <h2>Patient Diagnostics</h2>
-                <form id="prediction-form">
-                    <div class="form-grid">
-                        <div class="input-group">
-                            <label for="age">Age</label>
-                            <input type="number" id="age" name="age" step="1" required min="1" max="120" placeholder="e.g. 45">
-                        </div>
-
-                        <div class="input-group">
-                            <label for="sex">Sex</label>
-                            <select id="sex" name="sex" required>
-                                <option value="" disabled selected>Select</option>
-                                <option value="1">Male</option>
-                                <option value="0">Female</option>
-                            </select>
-                        </div>
-
-                        <div class="input-group">
-                            <label for="cp">Chest Pain Type (0-3)</label>
-                            <select id="cp" name="cp" required>
-                                <option value="" disabled selected>Select</option>
-                                <option value="0">0: Typical Angina</option>
-                                <option value="1">1: Atypical Angina</option>
-                                <option value="2">2: Non-anginal Pain</option>
-                                <option value="3">3: Asymptomatic</option>
-                            </select>
-                        </div>
-
-                        <div class="input-group">
-                            <label for="trestbps">Resting Blood Pressure (mm Hg)</label>
-                            <input type="number" id="trestbps" name="trestbps" required placeholder="e.g. 120">
-                        </div>
-
-                        <div class="input-group">
-                            <label for="chol">Serum Cholestoral (mg/dl)</label>
-                            <input type="number" id="chol" name="chol" required placeholder="e.g. 200">
-                        </div>
-
-                        <div class="input-group">
-                            <label for="fbs">Fasting Blood Sugar > 120 mg/dl</label>
-                            <select id="fbs" name="fbs" required>
-                                <option value="" disabled selected>Select</option>
-                                <option value="1">1: Yes</option>
-                                <option value="0">0: No</option>
-                            </select>
-                        </div>
-
-                        <div class="input-group">
-                            <label for="restecg">Resting ECG Results (0-2)</label>
-                            <select id="restecg" name="restecg" required>
-                                <option value="" disabled selected>Select</option>
-                                <option value="0">0: Normal</option>
-                                <option value="1">1: ST-T Wave Abnormality</option>
-                                <option value="2">2: Probable/Definite LVH</option>
-                            </select>
-                        </div>
-
-                        <div class="input-group">
-                            <label for="thalach">Max Heart Rate Achieved</label>
-                            <input type="number" id="thalach" name="thalach" required placeholder="e.g. 150">
-                        </div>
-
-                        <div class="input-group">
-                            <label for="exang">Exercise Induced Angina</label>
-                            <select id="exang" name="exang" required>
-                                <option value="" disabled selected>Select</option>
-                                <option value="1">1: Yes</option>
-                                <option value="0">0: No</option>
-                            </select>
-                        </div>
-
-                        <div class="input-group">
-                            <label for="oldpeak">ST Depression (Oldpeak)</label>
-                            <input type="number" id="oldpeak" name="oldpeak" step="0.1" required placeholder="e.g. 1.0">
-                        </div>
-
-                        <div class="input-group">
-                            <label for="slope">Slope of Peak Exercise ST Segment (0-2)</label>
-                            <select id="slope" name="slope" required>
-                                <option value="" disabled selected>Select</option>
-                                <option value="0">0: Upsloping</option>
-                                <option value="1">1: Flat</option>
-                                <option value="2">2: Downsloping</option>
-                            </select>
-                        </div>
-
-                        <div class="input-group">
-                            <label for="ca">Number of Major Vessels (0-3)</label>
-                            <select id="ca" name="ca" required>
-                                <option value="" disabled selected>Select</option>
-                                <option value="0">0</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                            </select>
-                        </div>
-
-                        <div class="input-group">
-                            <label for="thal">Thalassemia (0-3)</label>
-                            <select id="thal" name="thal" required>
-                                <option value="" disabled selected>Select</option>
-                                <option value="0">0: Normal</option>
-                                <option value="1">1: Fixed Defect</option>
-                                <option value="2">2: Reversable Defect</option>
-                                <option value="3">3: Other</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <button type="submit" class="submit-btn" id="predict-btn">
-                        <span>Analyze Patient Data</span>
-                        <i class="fa-solid fa-microchip"></i>
-                    </button>
-                    
-                    <div id="loading" class="hidden">
-                        <div class="spinner"></div>
-                        <span>Running ML Inference...</span>
-                    </div>
-                </form>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar glass-panel">
+            <div class="logo-area">
+                <i class="fa-solid fa-heart-pulse logo-icon"></i>
+                <h2>CardioSense</h2>
             </div>
 
-            <div class="results-container glass-panel hidden" id="results-panel">
-                <h2>Analysis Results</h2>
-                
-                <div class="result-card">
-                    <div class="risk-badge" id="risk-badge">
-                        <!-- Dynamic Risk Level -->
-                    </div>
-                    
-                    <div class="prediction-text" id="prediction-text">
-                        <!-- Dynamic Prediction -->
-                    </div>
-                    
-                    <div class="probability-container">
-                        <div class="prob-header">
-                            <span>Disease Probability</span>
-                            <span id="prob-percentage">0%</span>
-                        </div>
-                        <div class="progress-bar-bg">
-                            <div class="progress-bar-fill" id="prob-fill"></div>
-                        </div>
+            <ul class="nav-links">
+                <li>
+                    <a href="#" class="nav-item active" data-tab="predict-tab">
+                        <i class="fa-solid fa-stethoscope"></i>
+                        <span>Diagnostics</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-item" data-tab="eda-tab">
+                        <i class="fa-solid fa-chart-pie"></i>
+                        <span>Data Analysis</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-item" data-tab="model-tab">
+                        <i class="fa-solid fa-brain"></i>
+                        <span>ML Models</span>
+                    </a>
+                </li>
+            </ul>
+
+            <div class="sidebar-footer">
+                <p>v2.0 Beta</p>
+                <p>Powered by Random Forest</p>
+            </div>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <header class="top-header">
+                <h1 id="page-title">Patient Diagnostics</h1>
+                <p id="page-desc">Enter clinical parameters for instant AI-driven heart disease risk assessment.</p>
+            </header>
+
+            <!-- TAB 1: Predict (Original Form) -->
+            <section id="predict-tab" class="tab-content active-tab">
+                <div class="predict-layout">
+                    <div class="form-container glass-panel">
+                        <h3>Clinical Parameters</h3>
+                        <form id="prediction-form">
+                            <div class="form-grid">
+                                <div class="input-group">
+                                    <label for="age">Age</label>
+                                    <input type="number" id="age" name="age" step="1" required min="1" max="120"
+                                        placeholder="e.g. 45">
+                                </div>
+                                <div class="input-group">
+                                    <label for="sex">Sex</label>
+                                    <select id="sex" name="sex" required>
+                                        <option value="" disabled selected>Select</option>
+                                        <option value="1">Male</option>
+                                        <option value="0">Female</option>
+                                    </select>
+                                </div>
+                                <div class="input-group">
+                                    <label for="cp">Chest Pain Type</label>
+                                    <select id="cp" name="cp" required>
+                                        <option value="" disabled selected>Select</option>
+                                        <option value="0">0: Typical Angina</option>
+                                        <option value="1">1: Atypical Angina</option>
+                                        <option value="2">2: Non-anginal Pain</option>
+                                        <option value="3">3: Asymptomatic</option>
+                                    </select>
+                                </div>
+                                <div class="input-group">
+                                    <label for="trestbps">Resting BP (mm Hg)</label>
+                                    <input type="number" id="trestbps" name="trestbps" required placeholder="e.g. 120">
+                                </div>
+                                <div class="input-group">
+                                    <label for="chol">Serum Cholestoral (mg/dl)</label>
+                                    <input type="number" id="chol" name="chol" required placeholder="e.g. 200">
+                                </div>
+                                <div class="input-group">
+                                    <label for="fbs">Fasting Blood Sugar > 120</label>
+                                    <select id="fbs" name="fbs" required>
+                                        <option value="" disabled selected>Select</option>
+                                        <option value="1">Yes</option>
+                                        <option value="0">No</option>
+                                    </select>
+                                </div>
+                                <div class="input-group">
+                                    <label for="restecg">Resting ECG Results</label>
+                                    <select id="restecg" name="restecg" required>
+                                        <option value="" disabled selected>Select</option>
+                                        <option value="0">Normal</option>
+                                        <option value="1">ST-T Wave Abnormality</option>
+                                        <option value="2">LVH Probable</option>
+                                    </select>
+                                </div>
+                                <div class="input-group">
+                                    <label for="thalach">Max Heart Rate</label>
+                                    <input type="number" id="thalach" name="thalach" required placeholder="e.g. 150">
+                                </div>
+                                <div class="input-group">
+                                    <label for="exang">Exercise Angina</label>
+                                    <select id="exang" name="exang" required>
+                                        <option value="" disabled selected>Select</option>
+                                        <option value="1">Yes</option>
+                                        <option value="0">No</option>
+                                    </select>
+                                </div>
+                                <div class="input-group">
+                                    <label for="oldpeak">ST Depression</label>
+                                    <input type="number" id="oldpeak" name="oldpeak" step="0.1" required
+                                        placeholder="e.g. 1.0">
+                                </div>
+                                <div class="input-group">
+                                    <label for="slope">ST Segment Peak</label>
+                                    <select id="slope" name="slope" required>
+                                        <option value="" disabled selected>Select</option>
+                                        <option value="0">Upsloping</option>
+                                        <option value="1">Flat</option>
+                                        <option value="2">Downsloping</option>
+                                    </select>
+                                </div>
+                                <div class="input-group">
+                                    <label for="ca">Major Vessels (0-3)</label>
+                                    <select id="ca" name="ca" required>
+                                        <option value="" disabled selected>Select</option>
+                                        <option value="0">0</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                    </select>
+                                </div>
+                                <div class="input-group">
+                                    <label for="thal">Thalassemia Defect</label>
+                                    <select id="thal" name="thal" required>
+                                        <option value="" disabled selected>Select</option>
+                                        <option value="0">Normal</option>
+                                        <option value="1">Fixed Defect</option>
+                                        <option value="2">Reversable Defect</option>
+                                        <option value="3">Other</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="submit-btn" id="predict-btn">
+                                <span>Run AI Inference</span>
+                                <i class="fa-solid fa-microchip"></i>
+                            </button>
+
+                            <div id="loading" class="hidden">
+                                <div class="spinner"></div>
+                                <span>Analyzing Biomarkers...</span>
+                            </div>
+                        </form>
                     </div>
 
-                    <div class="metrics-grid">
-                        <div class="metric">
-                            <i class="fa-solid fa-bullseye"></i>
-                            <div class="metric-info">
-                                <span>Model Accuracy</span>
-                                <strong>88.52%</strong>
+                    <div class="results-container glass-panel hidden" id="results-panel">
+                        <h3>Diagnostic Results</h3>
+
+                        <div class="result-card">
+                            <div class="risk-badge" id="risk-badge">
+                                <!-- Dynamic Risk -->
                             </div>
-                        </div>
-                        <div class="metric">
-                            <i class="fa-solid fa-chart-line"></i>
-                            <div class="metric-info">
-                                <span>ROC-AUC Score</span>
-                                <strong>0.93</strong>
+
+                            <div class="prediction-text" id="prediction-text">
+                                <!-- Dynamic Text -->
                             </div>
+
+                            <div class="probability-container">
+                                <div class="prob-header">
+                                    <span>Confidence Interval</span>
+                                    <span id="prob-percentage">0%</span>
+                                </div>
+                                <div class="progress-bar-bg">
+                                    <div class="progress-bar-fill" id="prob-fill"></div>
+                                </div>
+                            </div>
+
+                            <div class="metrics-grid">
+                                <div class="metric">
+                                    <i class="fa-solid fa-bullseye"></i>
+                                    <div class="metric-info">
+                                        <span>Model Accuracy</span>
+                                        <strong>10-Fold: ~80%</strong>
+                                    </div>
+                                </div>
+                                <div class="metric">
+                                    <i class="fa-solid fa-star-of-life"></i>
+                                    <div class="metric-info">
+                                        <span>Top Factor</span>
+                                        <strong>Chest Pain</strong>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button class="reset-btn" id="reset-btn">
+                                <i class="fa-solid fa-rotate-left"></i>
+                                Reset Form
+                            </button>
                         </div>
                     </div>
-
-                    <button class="reset-btn" id="reset-btn">
-                        <i class="fa-solid fa-rotate-right"></i>
-                        New Analysis
-                    </button>
                 </div>
-            </div>
+            </section>
+
+            <!-- TAB 2: Exploratory Data Analysis -->
+            <section id="eda-tab" class="tab-content hidden-tab">
+                <div class="dashboard-grid">
+                    <div class="chart-card glass-panel span-2">
+                        <h3>Dataset Overview</h3>
+                        <img src="eda_overview.png" alt="Dataset Overview" class="responsive-img">
+                        <p class="chart-caption">Distribution of target classes and age histograms showing prevalence of
+                            heart disease across the population dataset.</p>
+                    </div>
+
+                    <div class="chart-card glass-panel span-2">
+                        <h3>Feature Correlation Heatmap</h3>
+                        <img src="eda_correlation.png" alt="Correlation Heatmap" class="responsive-img">
+                        <p class="chart-caption">Pearson correlation matrix revealing statistical relationships between
+                            clinical variables and heart disease presence.</p>
+                    </div>
+
+                    <div class="chart-card glass-panel span-2">
+                        <h3>Continuous Feature Distributions</h3>
+                        <img src="eda_distributions.png" alt="Distributions" class="responsive-img">
+                        <p class="chart-caption">Density plots comparing the distributions of key continuous features
+                            (Age, Blood Pressure, Cholesterol, Heart Rate) between positive and negative classes.</p>
+                    </div>
+
+                    <div class="chart-card glass-panel span-2">
+                        <h3>Outlier Detection Boxplots</h3>
+                        <img src="eda_boxplots.png" alt="Boxplots" class="responsive-img">
+                        <p class="chart-caption">Box-and-whisker plots highlighting the interquartile ranges and
+                            statistical outliers for key vascular metrics.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 3: Model Performance -->
+            <section id="model-tab" class="tab-content hidden-tab">
+                <div class="dashboard-grid">
+                    <div class="chart-card glass-panel span-2">
+                        <h3>Executive Summary Dashboard</h3>
+                        <img src="summary_dashboard.png" alt="Summary Dashboard" class="responsive-img">
+                        <p class="chart-caption">High-level view of all ML experiments including Radar Charts, Accuracy
+                            comparisons, and metric tables.</p>
+                    </div>
+
+                    <div class="chart-card glass-panel span-1">
+                        <h3>Random Forest Feature Importance</h3>
+                        <img src="feature_importance.png" alt="Feature Importance" class="responsive-img">
+                        <p class="chart-caption">Gini importance ranking computed by the best-performing Random Forest
+                            algorithm. Highlights `thalach` and `cp` as major predictive factors.</p>
+                    </div>
+
+                    <div class="chart-card glass-panel span-1">
+                        <h3>Model Learning Curves</h3>
+                        <img src="learning_curves.png" alt="Learning Curves" class="responsive-img">
+                        <p class="chart-caption">Training vs Validation accuracy across different sample sizes
+                            indicating bias/variance tradeoffs.</p>
+                    </div>
+
+                    <div class="chart-card glass-panel span-1">
+                        <h3>Cross-Validation Stability</h3>
+                        <img src="cv_boxplot.png" alt="Cross Validation Boxplots" class="responsive-img">
+                        <p class="chart-caption">Accuracy variance across 10-fold stratified cross-validation testing.
+                            Random Forest showed the most robust generalization.</p>
+                    </div>
+
+                    <div class="chart-card glass-panel span-1">
+                        <h3>ROC-AUC Curves</h3>
+                        <img src="roc_curves.png" alt="ROC Curves" class="responsive-img">
+                        <p class="chart-caption">True Positive Rate vs False Positive Rate indicating the discriminatory
+                            power of each classifier.</p>
+                    </div>
+                </div>
+            </section>
+
         </main>
-        
-        <footer>
-            <p>Powered by Random Forest Engine</p>
-        </footer>
     </div>
 
     <script src="app.js"></script>
 </body>
+
 </html>

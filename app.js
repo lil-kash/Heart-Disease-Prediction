@@ -1,4 +1,44 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // --- Tab Navigation Logic ---
+    const navItems = document.querySelectorAll('.nav-item');
+    const tabContents = document.querySelectorAll('.tab-content');
+    const pageTitle = document.getElementById('page-title');
+    const pageDesc = document.getElementById('page-desc');
+
+    const tabInfo = {
+        'predict-tab': { title: 'Patient Diagnostics', desc: 'Enter clinical parameters for instant AI-driven heart disease risk assessment.' },
+        'eda-tab': { title: 'Data Analysis', desc: 'Exploratory visualization of population health metrics and dataset distributions.' },
+        'model-tab': { title: 'ML Models', desc: 'Performance evaluation metrics for the Random Forest classification engine.' }
+    };
+
+    navItems.forEach(item => {
+        item.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            // Remove active from all navs & hide all tabs
+            navItems.forEach(nav => nav.classList.remove('active'));
+            tabContents.forEach(tab => {
+                tab.classList.remove('active-tab');
+                tab.classList.add('hidden-tab');
+            });
+
+            // Add active to clicked nav & show corresponding tab
+            item.classList.add('active');
+            const targetId = item.getAttribute('data-tab');
+            const targetTab = document.getElementById(targetId);
+
+            targetTab.classList.remove('hidden-tab');
+            targetTab.classList.add('active-tab');
+
+            // Update Header Title
+            if (tabInfo[targetId]) {
+                pageTitle.textContent = tabInfo[targetId].title;
+                pageDesc.textContent = tabInfo[targetId].desc;
+            }
+        });
+    });
+
+    // --- Prediction Logic ---
     const form = document.getElementById('prediction-form');
     const submitBtn = document.getElementById('predict-btn');
     const loadingDiv = document.getElementById('loading');
