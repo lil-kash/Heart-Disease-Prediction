@@ -12,11 +12,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const probFill = document.getElementById('prob-fill');
 
     // Backend API URL
-    const API_URL = 'http://127.0.0.1:8000/predict';
+    const API_URL = '/predict';
 
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
-        
+
         // Hide previous results and show loading
         resultsPanel.classList.add('hidden');
         submitBtn.classList.add('hidden');
@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Gather form data
         const formData = new FormData(form);
         const patientData = {};
-        
+
         for (let [key, value] of formData.entries()) {
             patientData[key] = parseFloat(value);
         }
@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Set Risk Badge
         riskBadge.textContent = data.Risk_Level;
         riskBadge.className = 'risk-badge'; // Reset classes
-        
+
         if (data.Risk_Level.includes('HIGH')) {
             riskBadge.classList.add('high');
         } else if (data.Risk_Level.includes('MODERATE')) {
@@ -85,11 +85,11 @@ document.addEventListener('DOMContentLoaded', () => {
         // Animate Probability Bar
         const probVal = (data.Probability * 100).toFixed(1);
         probPercentage.textContent = `${probVal}%`;
-        
+
         // Slight delay for CSS transition to trigger
         setTimeout(() => {
             probFill.style.width = `${probVal}%`;
-            
+
             // Color gradient based on probability
             if (probVal < 40) {
                 probFill.style.background = 'linear-gradient(90deg, #10B981, #34D399)';
