@@ -1,5 +1,6 @@
 Model,Accuracy,Precision,Recall,F1 Score,ROC-AUC
-Logistic Regression,0.5902,0.5806,0.6,0.5902,0.5538
-SVM (RBF),0.5902,0.5714,0.6667,0.6154,0.5978
-Decision Tree,0.5246,0.5185,0.4667,0.4912,0.5801
-Random Forest,0.4754,0.4643,0.4333,0.4483,0.4801
+Logistic Regression,0.8333,0.8462,0.7857,0.8148,0.9498
+SVM (RBF),0.85,0.88,0.7857,0.8302,0.9542
+Decision Tree,0.7,0.75,0.5357,0.625,0.745
+Random Forest,0.8667,0.8846,0.8214,0.8519,0.9487
+Best RF (Tuned),0.85,0.88,0.7857,0.8302,0.9509
