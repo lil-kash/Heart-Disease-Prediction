@@ -155,17 +155,10 @@ The backend serves both the API (`/predict`) and the frontend UI on the same por
 
 ---
 
-## 👨‍💻 Team
+## 👨‍💻 Developer
 
-| Name | Role |
-|---|---|
-| **Kashish Mohammad** | ML Engineering, Backend API, Frontend |
-| **Vridhi Vazirani** | Data Analysis, EDA |
-| **Jaaswanth Chikkala** | Model Training & Evaluation |
-| **Mahadev** | Data Preprocessing |
-| **Mohith** | Visualization & Dashboard |
-
-**Woxsen University — B.Tech CSE (Data Science) | 2026**
+**Kashish Mohammad**  
+B.Tech CSE (Data Science) | Woxsen University | 2026
 
 ---
 
